@@ -6,36 +6,52 @@ public class Frogger{
     
     short tamXTablero;
     short tamYTablero;
+    
+    //Dimension del suelo y del agua en cuanto a 'Y' se refiere
     final short DIM_SUELO = 13;
     final short DIM_AGUA = 6;
+    
+    //Filas de los diferentes obstaculos
+    final short FILA_COCHES_1 = 10;
+    final short FILA_COCHES_2 = 8;
+    final short FILA_NENUFARES_1 = 5;
+    final short FILA_NENUFARES_2 = 3;
+    final short FILA_NENUFARES_3 = 1;
+    final short FILA_TRONCOS_1 = 4;
+    final short FILA_TRONCOS_2 = 2;
+    
+    //Array multidimensional para el tablero
     char[][] tablero;
     
+    //Jugador + Obstaculos
     final char JUGADOR = 'a';
     final char COCHES = 'b';
     final char TRONCOS = 'c';
     final char NENUFARES = 'd';
+    final char METAS = 'e';
     
+    //Zonas
     final char SUELO = '.';
     final char AGUA = ',';
-    final char PARED = '-';
-    
+    final char PARED = '-';  
     
     public Frogger(){
         
         tamXTablero = 20;
-        tamYTablero = 15;
+        tamYTablero = 14;
 
         tablero = new char[tamXTablero][tamYTablero];
         
         Random random = new Random();
         
+        //Crear tablero con las diferentes zonas
         for(int x=0; x<tamXTablero; x++) {
-            for(int y=0; y<DIM_AGUA; y++) {
+            for(int y=0; y<DIM_AGUA+1; y++) {
                 tablero[x][y] = AGUA;
             }
         }
         for(int x=0; x<tamXTablero; x++){
-            for(int y=DIM_AGUA; y<DIM_SUELO; y++){
+            for(int y=DIM_AGUA; y<DIM_SUELO+1; y++){
                 tablero[x][y] = SUELO;
             }
         }
@@ -44,6 +60,53 @@ public class Frogger{
             tablero[x][6] = PARED;
             tablero[x][12] = PARED;
         }
+        
+        //Colocar coches en el tablero
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_COCHES_1]= COCHES;
+            tablero[i+1][FILA_COCHES_2]= COCHES;
+            i++;
+        }
+        
+        //Colocar nenufares en el tablero
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_1]= NENUFARES;
+            tablero[i+1][FILA_NENUFARES_1]= NENUFARES;
+            i+=3;
+        }
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_2]= NENUFARES;
+            tablero[i+1][FILA_NENUFARES_2]= NENUFARES;
+            i+=3;
+        }
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_3]= NENUFARES;
+            tablero[i+1][FILA_NENUFARES_3]= NENUFARES;
+            i+=3;
+        }
+        
+        //Colocar nenufares en el tablero
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_TRONCOS_1]= TRONCOS;
+            tablero[i+1][FILA_TRONCOS_1]= TRONCOS;
+            tablero[i+2][FILA_TRONCOS_1]= TRONCOS;
+            i+=4;
+        }
+        
+        //Colocar nenufares en el tablero
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_TRONCOS_2]= TRONCOS;
+            tablero[i+1][FILA_TRONCOS_2]= TRONCOS;
+            tablero[i+2][FILA_TRONCOS_2]= TRONCOS;
+            i+=4;
+        }
+        
+        //Color metas en el tablero
+        for (int i=2; i<tamXTablero; i++){
+            tablero[i][0]= METAS;
+            i+=4;
+        }
+        
         tablero[random.nextInt(19)][13] = JUGADOR;
         
     }
