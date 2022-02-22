@@ -7,6 +7,7 @@ public class Frogger{
     short tamXTablero;
     short tamYTablero;
     
+    short movimiento = 0;
     //Dimension del suelo y del agua en cuanto a 'Y' se refiere
     final short DIM_SUELO = 13;
     final short DIM_AGUA = 6;
@@ -61,46 +62,6 @@ public class Frogger{
             tablero[x][12] = PARED;
         }
         
-        //Colocar coches en el tablero
-        for (int i=0; i<tamXTablero; i++){
-            tablero[i][FILA_COCHES_1]= COCHES;
-            tablero[i+1][FILA_COCHES_2]= COCHES;
-            i++;
-        }
-        
-        //Colocar nenufares en el tablero
-        for (int i=0; i<tamXTablero; i++){
-            tablero[i][FILA_NENUFARES_1]= NENUFARES;
-            tablero[i+1][FILA_NENUFARES_1]= NENUFARES;
-            i+=3;
-        }
-        for (int i=0; i<tamXTablero; i++){
-            tablero[i][FILA_NENUFARES_2]= NENUFARES;
-            tablero[i+1][FILA_NENUFARES_2]= NENUFARES;
-            i+=3;
-        }
-        for (int i=0; i<tamXTablero; i++){
-            tablero[i][FILA_NENUFARES_3]= NENUFARES;
-            tablero[i+1][FILA_NENUFARES_3]= NENUFARES;
-            i+=3;
-        }
-        
-        //Colocar nenufares en el tablero
-        for (int i=0; i<tamXTablero; i++){
-            tablero[i][FILA_TRONCOS_1]= TRONCOS;
-            tablero[i+1][FILA_TRONCOS_1]= TRONCOS;
-            tablero[i+2][FILA_TRONCOS_1]= TRONCOS;
-            i+=4;
-        }
-        
-        //Colocar nenufares en el tablero
-        for (int i=0; i<tamXTablero; i++){
-            tablero[i][FILA_TRONCOS_2]= TRONCOS;
-            tablero[i+1][FILA_TRONCOS_2]= TRONCOS;
-            tablero[i+2][FILA_TRONCOS_2]= TRONCOS;
-            i+=4;
-        }
-        
         //Color metas en el tablero
         for (int i=2; i<tamXTablero; i++){
             tablero[i][0]= METAS;
@@ -108,20 +69,109 @@ public class Frogger{
         }
         
         tablero[random.nextInt(19)][13] = JUGADOR;
+    
+    }
+    
+    public void colocacionObstaculos(){
+        
+        //Colocar coches en el tablero
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_COCHES_1]= COCHES;
+            tablero[i+1][FILA_COCHES_1] = SUELO;
+            tablero[i+1][FILA_COCHES_2]= COCHES;
+            tablero[i][FILA_COCHES_2] = SUELO;
+            i++;
+        }
+        
+        //Colocar nenufares en el tablero
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_1]= NENUFARES;
+            tablero[i+1][FILA_NENUFARES_1]= NENUFARES;
+            tablero[i+2][FILA_NENUFARES_1]= AGUA;
+            tablero[i+3][FILA_NENUFARES_1]= AGUA;
+            i+=3;
+        }
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_2]= NENUFARES;
+            tablero[i+1][FILA_NENUFARES_2]= NENUFARES;
+            tablero[i+2][FILA_NENUFARES_2]= AGUA;
+            tablero[i+3][FILA_NENUFARES_2]= AGUA;
+            i+=3;
+        }
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_3]= NENUFARES;
+            tablero[i+1][FILA_NENUFARES_3]= NENUFARES;
+            tablero[i+2][FILA_NENUFARES_3]= AGUA;
+            tablero[i+3][FILA_NENUFARES_3]= AGUA;
+            i+=3;
+        }
+        
+        //Colocar troncos en el tablero
+        for (int i=1; i<tamXTablero; i++){
+            tablero[i-1][FILA_TRONCOS_1]= AGUA;
+            tablero[i][FILA_TRONCOS_1]= TRONCOS;
+            tablero[i+1][FILA_TRONCOS_1]= TRONCOS;
+            tablero[i+2][FILA_TRONCOS_1]= TRONCOS;
+            tablero[i+3][FILA_TRONCOS_1]= AGUA;
+            i+=4;
+        }
+        for (int i=1; i<tamXTablero; i++){
+            tablero[i-1][FILA_TRONCOS_2]= AGUA;
+            tablero[i][FILA_TRONCOS_2]= TRONCOS;
+            tablero[i+1][FILA_TRONCOS_2]= TRONCOS;
+            tablero[i+2][FILA_TRONCOS_2]= TRONCOS;
+            tablero[i+3][FILA_TRONCOS_2]= AGUA;
+            i+=4;
+        }
+        
+    }
+    
+    public void movimientoObstaculos(){
+        
+        //Cambio de posicion del obstaculo coches
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i+1][FILA_COCHES_1]= COCHES;
+            tablero[i][FILA_COCHES_1] = SUELO;
+            tablero[i][FILA_COCHES_2]= COCHES;
+            tablero[i+1][FILA_COCHES_2] = SUELO;
+            i++;
+        }
+        //Cambio de posicion del obstaculo nenufares
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_1]= AGUA;
+            tablero[i+1][FILA_NENUFARES_1]= AGUA;
+            tablero[i+2][FILA_NENUFARES_1]= NENUFARES;
+            tablero[i+3][FILA_NENUFARES_1]= NENUFARES;
+            i+=3;
+        }
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_2]= AGUA;
+            tablero[i+1][FILA_NENUFARES_2]= AGUA;
+            tablero[i+2][FILA_NENUFARES_2]= NENUFARES;
+            tablero[i+3][FILA_NENUFARES_2]= NENUFARES;
+            i+=3;
+        }
+        for (int i=0; i<tamXTablero; i++){
+            tablero[i][FILA_NENUFARES_3]= AGUA;
+            tablero[i+1][FILA_NENUFARES_3]= AGUA;
+            tablero[i+2][FILA_NENUFARES_3]= NENUFARES;
+            tablero[i+3][FILA_NENUFARES_3]= NENUFARES;
+            i+=3;
+        }
         
     }
     
     public void mostrarTableroConsola() {
-        
-        for(int y=0; y<tamYTablero; y++) {
-            for(int x=0; x<tamXTablero; x++) {
-                System.out.print(tablero[x][y]);
+            
+            for(int y=0; y<tamYTablero; y++) {
+                for(int x=0; x<tamXTablero; x++) {
+                    System.out.print(tablero[x][y]);
+                }
+                System.out.println();
             }
-            System.out.println();
-        }
 
-        System.out.println();
-        
+            System.out.println();
+            
     }
     
 }

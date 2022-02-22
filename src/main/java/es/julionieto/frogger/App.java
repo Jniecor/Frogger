@@ -1,6 +1,5 @@
 package es.julionieto.frogger;
 
-import java.util.Random;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -17,17 +16,26 @@ public class App extends Application {
         short tamXPantalla = 800;
         short tamYPantalla = 600;
         
+        short movimiento = 0;
+        
         
         Pane rootPane = new Pane ();
         var scene = new Scene(rootPane, tamXPantalla, tamYPantalla);
         stage.setScene(scene);
         stage.show();
                
-        Frogger frogger = new Frogger();        
-        frogger.mostrarTableroConsola();
-        
+        Frogger frogger = new Frogger();
         Rana rana = new Rana();
         rootPane.getChildren().add(rana);
+        while (movimiento < 10){
+            frogger.colocacionObstaculos();
+            frogger.mostrarTableroConsola();
+            frogger.movimientoObstaculos();
+            frogger.mostrarTableroConsola();
+            frogger.colocacionObstaculos();
+            movimiento++;
+        }
+
     }
 
     public static void main(String[] args) {
