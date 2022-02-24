@@ -27,6 +27,12 @@ public class Frogger{
     final short DIM_SUELO = 13;
     final short DIM_AGUA = 6;
     
+    //Posición del jugador
+    final short POS_INIY_JGUADOR = 13; 
+    Random random = new Random();
+    int posX = 3;
+    short posY = 8;
+    
     //Filas de los diferentes obstaculos
     final short FILA_COCHES_1 = 10;
     final short FILA_COCHES_2 = 8;
@@ -36,6 +42,11 @@ public class Frogger{
     final short FILA_TRONCOS_1 = 4;
     final short FILA_TRONCOS_2 = 2;
 
+    //Contadores
+    short contadorMuertes = 0;
+    short contadorDesplazamiento = 0;
+    short contadorEstancado = 0;
+    
     public Frogger(){
         
         tamXTablero = 20;
@@ -60,6 +71,18 @@ public class Frogger{
             tablero[x][12] = PARED;
         }
     
+    }
+    
+    public void colocacionJugador(){
+    
+        tablero[posX][posY] = JUGADOR;
+        
+        if (posX>=0 && posX<=tamXTablero){
+            if (posY>=0 && posY<=tamXTablero){
+                System.out.println(posX);
+                System.out.println(posY);
+            }
+        }
     }
     
     public void colocacionObstaculos(){
@@ -157,19 +180,121 @@ public class Frogger{
         
     }
     
-    public void colocacionJugador(){
-    
-        Random random = new Random();
-        int posX = random.nextInt(19);
-        short posY = 13;
-        tablero[posX][posY] = JUGADOR;
+    public boolean comprobarColisionCoches(){
         
-        if (posX>=0 && posX<=tamXTablero){
-            if (posY>=0 && posY<=tamXTablero){
-                System.out.println(posX);
-                System.out.println(posY);
+        while (tamXTablero-posX >= 0 && tablero[posX][posY] == COCHES){
+            
+            contadorMuertes++;
+            for(short x=0; x<tamXTablero; x++){
+                tablero[x][POS_INIY_JGUADOR] = SUELO;
+            }
+            posX = random.nextInt(19);
+            posY = 13;
+            tablero[posX][posY] = JUGADOR;            
+            System.out.println("Te has chocado con un coche. Has muerto: "+contadorMuertes+" vez/veces." );
+            
+        }
+        if(contadorMuertes >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public boolean comprobarColisionAgua(){
+        
+        posX = 2;
+        posY = 1;
+    
+        while (tamXTablero-posX >= 0 && tablero[posX][posY] == AGUA){
+            
+            contadorMuertes++;
+            for(short x=0; x<tamXTablero; x++){
+                tablero[x][POS_INIY_JGUADOR] = SUELO;
+            }
+            posX = random.nextInt(19);
+            posY = 13;
+            tablero[posX][posY] = JUGADOR;
+            System.out.println("Te has caido al agua. Has muerto: "+contadorMuertes+" vez/veces." );
+            
+        }
+        if(contadorMuertes >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public boolean comprobarColisionNenufares(){
+        
+        if (posX >= 0 && posX != tamXTablero){
+            if(tablero[posX+1][posY] == TRONCOS){
+                tablero[posX][posY] = TRONCOS;
             }
         }
+        if (posX <= tamXTablero && posX != 0){
+            if(tablero[posX-1][posY] == TRONCOS){
+                tablero[posX][posY] = TRONCOS;
+            }
+        }
+        
+        posX = 0;
+        posY = 1;
+    
+        while (tamXTablero-posX >= 0 && tablero[posX][posY] == NENUFARES){
+            
+            contadorDesplazamiento++;
+            for(short x=0; x<tamXTablero; x++){
+                tablero[x][POS_INIY_JGUADOR] = SUELO;
+            }
+            tablero[posX][posY] = JUGADOR;
+            System.out.println("Estás subido a un nenufar. Te estas desplazando con el nenufar: "+contadorDesplazamiento+" vez/veces." );
+            
+        }
+        
+        if(contadorMuertes >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public boolean comprobarColisionTroncos(){
+        
+        if (posX >= 0 && posX != tamXTablero){
+            if(tablero[posX+1][posY] == NENUFARES){
+                tablero[posX][posY] = NENUFARES;
+            }
+        }
+        if (posX <= tamXTablero && posX != 0){
+            if(tablero[posX-1][posY] == NENUFARES){
+                tablero[posX][posY] = NENUFARES;
+            }
+        }
+        
+        posX = 1;
+        posY = 2;
+    
+        while (tamXTablero-posX >= 0 && tablero[posX][posY] == TRONCOS){
+            
+            contadorEstancado++;
+            tablero[posX][posY] = JUGADOR;
+            System.out.println("Estás subido a un tronco. El tronco está estancado. Te has estancado: "+contadorDesplazamiento+" vez/veces." );
+            
+        }
+        
+        posX = 0;
+        posY = 1;
+        
+        if(contadorMuertes >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
     
     public void mostrarTableroConsola() {

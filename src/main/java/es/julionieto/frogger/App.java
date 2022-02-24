@@ -28,13 +28,15 @@ public class App extends Application {
         Rana rana = new Rana();
         rootPane.getChildren().add(rana);
         frogger.colocacionJugador();
-        while (movimiento < 5){
-            frogger.colocacionObstaculos();            
-            frogger.mostrarTableroConsola();
-            frogger.movimientoObstaculos();
-            frogger.mostrarTableroConsola();
-            movimiento++;
-        }
+        frogger.colocacionObstaculos();
+        frogger.comprobarColisionCoches();
+        frogger.comprobarColisionAgua();
+        frogger.comprobarColisionNenufares();
+        frogger.comprobarColisionTroncos();
+        frogger.comprobarColisionNenufares();
+        frogger.mostrarTableroConsola();
+        movimiento++;
+        
 
     }
 
