@@ -1,7 +1,6 @@
 package es.julionieto.frogger;
 
 import java.util.Random;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

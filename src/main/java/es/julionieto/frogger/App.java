@@ -12,18 +12,17 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         
-        
+        //Dimensiones de la pantalla
         short tamXPantalla = 800;
         short tamYPantalla = 600;
         
-        short movimiento = 0;
-        
-        
+        //Se crea el panel con las dimensiones de la pantalla
         Pane rootPane = new Pane ();
         var scene = new Scene(rootPane, tamXPantalla, tamYPantalla);
         stage.setScene(scene);
         stage.show();
-               
+        
+        //Se añaden las diferentes clases a la escena/consola
         Frogger frogger = new Frogger();
         Rana rana = new Rana();
         rootPane.getChildren().add(rana);
@@ -34,9 +33,11 @@ public class App extends Application {
         frogger.comprobarColisionNenufares();
         frogger.comprobarColisionTroncos();
         frogger.comprobarColisionNenufares();
-        frogger.mostrarTableroConsola();
-        movimiento++;
-        
+        frogger.comprobarColisionParedFinal();
+        frogger.comprobarColisionNenufares();
+        frogger.comprobarColisionMetas();
+        frogger.comprobarColisionMetas();
+        frogger.mostrarTableroConsola();        
 
     }
 

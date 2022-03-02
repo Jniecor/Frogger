@@ -29,6 +29,7 @@ public class Frogger{
     
     //Posición del jugador
     final short POS_INIY_JGUADOR = 13; 
+    final short POS_INIY2_JGUADOR = 6;
     Random random = new Random();
     int posX = 3;
     short posY = 8;
@@ -46,15 +47,18 @@ public class Frogger{
     short contadorMuertes = 0;
     short contadorDesplazamiento = 0;
     short contadorEstancado = 0;
+    short contadorMeta = 0;
     
     public Frogger(){
         
+        //Tamaño del tablero
         tamXTablero = 20;
         tamYTablero = 14;
 
+        //Se crea el tablero con las dimensiones de arriba
         tablero = new char[tamXTablero][tamYTablero];
         
-        //Crear tablero con las diferentes zonas
+        //Se define las diferentes zonas del tablero
         for(short x=0; x<tamXTablero; x++) {
             for(short y=0; y<DIM_AGUA+1; y++) {
                 tablero[x][y] = AGUA;
@@ -74,9 +78,11 @@ public class Frogger{
     }
     
     public void colocacionJugador(){
-    
+        
+        //Se coloca al jugador
         tablero[posX][posY] = JUGADOR;
         
+        //Dice la posicion del jugador
         if (posX>=0 && posX<=tamXTablero){
             if (posY>=0 && posY<=tamXTablero){
                 System.out.println(posX);
@@ -87,7 +93,8 @@ public class Frogger{
     
     public void colocacionObstaculos(){
         
-        //Colocar coches en el tablero
+        /*--Colocación de todos los obstáculos/metas--*/
+        //Colocación del obstáculo Coches en el tablero
         for (short i=0; i<tamXTablero; i++){
             tablero[i][FILA_COCHES_1]= COCHES;
             tablero[i+1][FILA_COCHES_1] = SUELO;
@@ -96,7 +103,7 @@ public class Frogger{
             i++;
         }
         
-        //Colocar nenufares en el tablero
+        //Colocación del obstáculo Nenufares en el tablero
         for (short i=0; i<tamXTablero; i++){
             tablero[i][FILA_NENUFARES_1]= NENUFARES;
             tablero[i+1][FILA_NENUFARES_1]= NENUFARES;
@@ -119,7 +126,7 @@ public class Frogger{
             i+=3;
         }
         
-        //Colocar troncos en el tablero
+        //Colocación del obstáculo Troncos en el tablero
         for (short i=1; i<tamXTablero; i++){
             tablero[i-1][FILA_TRONCOS_1]= AGUA;
             tablero[i][FILA_TRONCOS_1]= TRONCOS;
@@ -137,7 +144,7 @@ public class Frogger{
             i+=4;
         }
         
-        //Color metas en el tablero
+        //Colocación del obstáculo Metas en el tablero
         for (short i=2; i<tamXTablero; i++){
             tablero[i][0]= METAS;
             i+=4;
@@ -147,7 +154,7 @@ public class Frogger{
     
     public void movimientoObstaculos(){
         
-        //Cambio de posicion del obstaculo coches
+        //Cambio de posición del obstáculo Coches
         for (short i=0; i<tamXTablero; i++){
             tablero[i+1][FILA_COCHES_1]= COCHES;
             tablero[i][FILA_COCHES_1] = SUELO;
@@ -155,7 +162,7 @@ public class Frogger{
             tablero[i+1][FILA_COCHES_2] = SUELO;
             i++;
         }
-        //Cambio de posicion del obstaculo nenufares
+        //Cambio de posición del obstáculo Nenufares
         for (short i=0; i<tamXTablero; i++){
             tablero[i][FILA_NENUFARES_1]= AGUA;
             tablero[i+1][FILA_NENUFARES_1]= AGUA;
@@ -182,6 +189,7 @@ public class Frogger{
     
     public boolean comprobarColisionCoches(){
         
+        //Se comprueba si el Jugador colisiona con el obstáculo Coches
         while (tamXTablero-posX >= 0 && tablero[posX][posY] == COCHES){
             
             contadorMuertes++;
@@ -189,8 +197,8 @@ public class Frogger{
                 tablero[x][POS_INIY_JGUADOR] = SUELO;
             }
             posX = random.nextInt(19);
-            posY = 13;
-            tablero[posX][posY] = JUGADOR;            
+            posY = POS_INIY_JGUADOR;
+            tablero[posX][posY] = JUGADOR;
             System.out.println("Te has chocado con un coche. Has muerto: "+contadorMuertes+" vez/veces." );
             
         }
@@ -206,15 +214,17 @@ public class Frogger{
         
         posX = 2;
         posY = 1;
-    
+        
+        //Se comprueba si el Jugador colisiona con el obstáculo Agua
         while (tamXTablero-posX >= 0 && tablero[posX][posY] == AGUA){
             
             contadorMuertes++;
             for(short x=0; x<tamXTablero; x++){
                 tablero[x][POS_INIY_JGUADOR] = SUELO;
+                tablero[x][POS_INIY2_JGUADOR] = PARED;
             }
             posX = random.nextInt(19);
-            posY = 13;
+            posY = POS_INIY2_JGUADOR;
             tablero[posX][posY] = JUGADOR;
             System.out.println("Te has caido al agua. Has muerto: "+contadorMuertes+" vez/veces." );
             
@@ -229,32 +239,35 @@ public class Frogger{
     
     public boolean comprobarColisionNenufares(){
         
-        if (posX >= 0 && posX != tamXTablero){
+        //Se comprueba si la ultima posición del Jugador fue encima del obstáculo Troncos
+        if (posX >= 0 && posX < tamXTablero){
             if(tablero[posX+1][posY] == TRONCOS){
                 tablero[posX][posY] = TRONCOS;
             }
         }
-        if (posX <= tamXTablero && posX != 0){
+        if (posX < tamXTablero && posX > 0){
             if(tablero[posX-1][posY] == TRONCOS){
                 tablero[posX][posY] = TRONCOS;
             }
         }
-        
+                
         posX = 0;
         posY = 1;
-    
+        
+        //Se comprueba si el Jugador colisiona con el obstáculo Nenufares
         while (tamXTablero-posX >= 0 && tablero[posX][posY] == NENUFARES){
             
             contadorDesplazamiento++;
             for(short x=0; x<tamXTablero; x++){
                 tablero[x][POS_INIY_JGUADOR] = SUELO;
+                tablero[x][POS_INIY2_JGUADOR] = PARED;
             }
             tablero[posX][posY] = JUGADOR;
             System.out.println("Estás subido a un nenufar. Te estas desplazando con el nenufar: "+contadorDesplazamiento+" vez/veces." );
             
         }
         
-        if(contadorMuertes >= 1) {
+        if(contadorDesplazamiento >= 1) {
             return true;
         } else {
             return false;
@@ -264,12 +277,13 @@ public class Frogger{
     
     public boolean comprobarColisionTroncos(){
         
-        if (posX >= 0 && posX != tamXTablero){
+        //Se comprueba si la ultima posición del jugador fue encima del obstáculo Nenufares
+        if (posX >= 0 && posX < tamXTablero){
             if(tablero[posX+1][posY] == NENUFARES){
                 tablero[posX][posY] = NENUFARES;
             }
         }
-        if (posX <= tamXTablero && posX != 0){
+        if (posX < tamXTablero && posX > 0){
             if(tablero[posX-1][posY] == NENUFARES){
                 tablero[posX][posY] = NENUFARES;
             }
@@ -277,7 +291,8 @@ public class Frogger{
         
         posX = 1;
         posY = 2;
-    
+        
+        //Se comprueba si el Jugador colisiona con el obstáculo Troncos
         while (tamXTablero-posX >= 0 && tablero[posX][posY] == TRONCOS){
             
             contadorEstancado++;
@@ -286,8 +301,45 @@ public class Frogger{
             
         }
         
+        if(contadorEstancado >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public boolean comprobarColisionParedFinal(){
+        
+        //Se comprueba si la ultima posición del jugador fue encima del obstáculo Nenufares
+        if (posX >= 0 && posX < tamXTablero){
+            if(tablero[posX+1][posY] == NENUFARES){
+                tablero[posX][posY] = NENUFARES;
+            }
+        }
+        if (posX < tamXTablero && posX > 0){
+            if(tablero[posX-1][posY] == NENUFARES){
+                tablero[posX][posY] = NENUFARES;
+            }
+        }
+        
         posX = 0;
-        posY = 1;
+        posY = 0;
+        
+        //Se comprueba si el Jugador colisiona con el obstáculo Pared(la cual la "Y" es 0)
+        while (tamXTablero-posX >= 0 && tablero[posX][posY] == PARED){
+            
+            contadorMuertes++;
+            for(short x=0; x<tamXTablero; x++){
+                tablero[x][POS_INIY_JGUADOR] = SUELO;
+                tablero[x][POS_INIY2_JGUADOR] = PARED;
+            }
+            posX = random.nextInt(19);
+            posY = POS_INIY2_JGUADOR;
+            tablero[posX][posY] = JUGADOR;
+            System.out.println("Te has chocado con la pared final. Has muerto: "+contadorMuertes+" vez/veces." );
+            
+        }
         
         if(contadorMuertes >= 1) {
             return true;
@@ -297,8 +349,65 @@ public class Frogger{
         
     }
     
+    public boolean comprobarColisionMetas(){
+        
+        //Se comprueba si la ultima posición del jugador fue encima del obstáculo Nenufares
+        if (posX >= 0 && posX < tamXTablero){
+            if(tablero[posX+1][posY] == NENUFARES){
+                tablero[posX][posY] = NENUFARES;
+            }
+        }
+        if (posX < tamXTablero && posX > 0){
+            if(tablero[posX-1][posY] == NENUFARES){
+                tablero[posX][posY] = NENUFARES;
+            }
+        }
+        
+        posX = 2;
+        posY = 0;
+        
+        //Se comprueba si la meta ya está ocupada por una Rana
+        if (tablero[posX][posY] == JUGADOR){
+            
+            contadorMuertes++;
+            System.out.println("Has llegado a una meta ya ocupada por una rana "+posX+", "+posY+". Has muerto: "+contadorMuertes+" vez/veces." );
+            for(short x=0; x<tamXTablero; x++){
+                tablero[x][POS_INIY_JGUADOR] = SUELO;
+                tablero[x][POS_INIY2_JGUADOR] = PARED;
+            }
+            posX = random.nextInt(19);
+            posY = POS_INIY2_JGUADOR;
+            tablero[posX][posY] = JUGADOR;
+            
+        }
+        
+        //Se comprueba si el Jugador colisiona con una de las Metas
+        while (tamXTablero-posX >= 0 && tablero[posX][posY] == METAS){
+            
+            tablero[posX][posY] = JUGADOR;            
+            contadorMeta++;
+            System.out.println("Has llegado a una de las metas "+posX+", "+posY+". Has alcanzado la meta: "+contadorMeta+" vez/veces." );
+            for(short x=0; x<tamXTablero; x++){
+                tablero[x][POS_INIY_JGUADOR] = SUELO;
+                tablero[x][POS_INIY2_JGUADOR] = PARED;
+            }
+            posX = random.nextInt(19);
+            posY = POS_INIY_JGUADOR;
+            tablero[posX][posY] = JUGADOR;
+            
+        }
+        
+        if(contadorMeta >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
     public void mostrarTableroConsola() {
             
+            //Muestra el tablero en la consola
             for(short y=0; y<tamYTablero; y++) {
                 for(short x=0; x<tamXTablero; x++) {
                     System.out.print(tablero[x][y]);
