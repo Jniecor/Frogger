@@ -1,4 +1,6 @@
-es\julionieto\frogger\App.class
+es\julionieto\frogger\Troncos.class
+es\julionieto\frogger\Rana.class
 es\julionieto\frogger\Frogger.class
 module-info.class
-es\julionieto\frogger\Rana.class
+es\julionieto\frogger\App.class
+es\julionieto\frogger\Coches.class

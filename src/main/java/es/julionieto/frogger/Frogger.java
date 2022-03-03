@@ -83,12 +83,12 @@ public class Frogger{
         tablero[posX][posY] = JUGADOR;
         
         //Dice la posicion del jugador
-        if (posX>=0 && posX<=tamXTablero){
-            if (posY>=0 && posY<=tamXTablero){
-                System.out.println(posX);
-                System.out.println(posY);
-            }
-        }
+//        if (posX>=0 && posX<=tamXTablero){
+//            if (posY>=0 && posY<=tamXTablero){
+//                System.out.println(posX);
+//                System.out.println(posY);
+//            }
+//        }
     }
     
     public void colocacionObstaculos(){
@@ -365,6 +365,9 @@ public class Frogger{
         
         posX = 2;
         posY = 0;
+        tablero[7][0] = JUGADOR;
+        tablero[12][0] = JUGADOR;
+        tablero[17][0] = JUGADOR;
         
         //Se comprueba si la meta ya está ocupada por una Rana
         if (tablero[posX][posY] == JUGADOR){
@@ -383,18 +386,27 @@ public class Frogger{
         
         //Se comprueba si el Jugador colisiona con una de las Metas
         while (tamXTablero-posX >= 0 && tablero[posX][posY] == METAS){
-            
-            tablero[posX][posY] = JUGADOR;            
-            contadorMeta++;
-            System.out.println("Has llegado a una de las metas "+posX+", "+posY+". Has alcanzado la meta: "+contadorMeta+" vez/veces." );
-            for(short x=0; x<tamXTablero; x++){
-                tablero[x][POS_INIY_JGUADOR] = SUELO;
-                tablero[x][POS_INIY2_JGUADOR] = PARED;
+
+            if (contadorMeta!=4){
+                
+                contadorMeta++;
+                tablero[posX][posY] = JUGADOR;
+                System.out.println("Has llegado a una de las metas "+posX+", "+posY+". Has alcanzado la meta: "+contadorMeta+" vez/veces." );
+                for(short x=0; x<tamXTablero; x++){
+                    tablero[x][POS_INIY_JGUADOR] = SUELO;
+                    tablero[x][POS_INIY2_JGUADOR] = PARED;
+                }
+                posX = random.nextInt(19);
+                posY = POS_INIY_JGUADOR;
+                tablero[posX][posY] = JUGADOR;
+                
             }
-            posX = random.nextInt(19);
-            posY = POS_INIY_JGUADOR;
-            tablero[posX][posY] = JUGADOR;
             
+            if (contadorMeta==4){
+                
+                this.reset();
+                
+            }
         }
         
         if(contadorMeta >= 1) {
@@ -403,6 +415,22 @@ public class Frogger{
             return false;
         }
         
+    }
+    
+    public void reset(){
+        
+        while (contadorMeta == 4){
+            
+            contadorMuertes = 0;
+            contadorDesplazamiento = 0;
+            contadorEstancado = 0;
+            contadorMeta = 0;
+            
+            System.out.println("¡Enhorabuena has ganado! Pulsa <ENTER> para empezar de nuevo.");
+            this.colocacionJugador();
+            this.colocacionObstaculos();
+            
+        }
     }
     
     public void mostrarTableroConsola() {
