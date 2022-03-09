@@ -38,10 +38,12 @@ public class App extends Application {
         Rana rana = new Rana();
         Coches coches = new Coches();
         Troncos troncos = new Troncos();
+        Nenufares nenufares = new Nenufares();
         paneScrollJuego.getChildren().add(rana);
         paneScrollJuego.getChildren().add(coches);
         paneScrollJuego.getChildren().add(troncos);
-        frogger.colocacionJugador();
+        paneScrollJuego.getChildren().add(nenufares);      
+        frogger.colocacionJugador();        
         frogger.colocacionObstaculos();
 //        frogger.comprobarColisionCoches();
 //        frogger.comprobarColisionAgua();

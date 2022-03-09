@@ -112,6 +112,7 @@ public class Rana extends Group{
         // Colocar personaje en su posición de inicio
         this.setLayoutX(posX);
         this.setLayoutY(posY);
+        
     }
     
 }

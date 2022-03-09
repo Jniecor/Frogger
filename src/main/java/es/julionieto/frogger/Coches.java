@@ -6,35 +6,38 @@ import javafx.scene.image.ImageView;
 
 public class Coches extends Group{
     
+    //Fila 1 (abajo)
+    static int posicionCoche0 = 770;
+    static int posicionCoche1 = 660;
+    static int posicionCoche2 = 550;
+    static int posicionCoche3 = 440;
+    static int posicionCoche4 = 330;
+    static int posicionCoche5 = 220;
+    static int posicionCoche6 = 110;
+    static int posicionCoche7 = 0;
+    
+    //Fila 2 (Arriba)
+    static int posicionCoche8 = 710;
+    static int posicionCoche9 = 600;
+    static int posicionCoche10 = 490;
+    static int posicionCoche11 = 380;
+    static int posicionCoche12 = 270;
+    static int posicionCoche13 = 160;
+    static int posicionCoche14 = 50;
+    static int posicionCoche15 = -60;
+    
+    
     public Coches(){
         
-        //Coches (Autopista)
-        int velCocheDer = 2;
+        //Velocidad coches
+//        int velCocheDer = 2;
         
         //Fila 1 (abajo)
         final double POSICION_FILA_1_COCHES = 456.5;
-        int posicionCoche0 = 770;
-        int posicionCoche1 = 660;
-        int posicionCoche2 = 550;
-        int posicionCoche3 = 440;
-        int posicionCoche4 = 330;
-        int posicionCoche5 = 220;
-        int posicionCoche6 = 110;
-        int posicionCoche7 = 0;
-
 
         //Fila 2 (Arriba)
         final double POSICION_FILA_2_COCHES = 383.5;
-        int posicionCoche8 = 710;
-        int posicionCoche9 = 600;
-        int posicionCoche10 = 490;
-        int posicionCoche11 = 380;
-        int posicionCoche12 = 270;
-        int posicionCoche13 = 160;
-        int posicionCoche14 = 50;
-        int posicionCoche15 = -60;
         
-        /*----Coches----*/
         //4 imagenes de los coches 
         Image cocheRojoDer = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
         Image cocheRojoIzq = new Image(getClass().getResourceAsStream("/images/Coche_rojo_izq.png"));
@@ -108,5 +111,7 @@ public class Coches extends Group{
         for(int i=0; i<16; i++){
             this.getChildren().add(cocheView[i]);
         }
+        
     }
+    
 }
