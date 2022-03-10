@@ -5,38 +5,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Coches extends Group{
-    
-    //Fila 1 (abajo)
-    static int posicionCoche0 = 770;
-    static int posicionCoche1 = 660;
-    static int posicionCoche2 = 550;
-    static int posicionCoche3 = 440;
-    static int posicionCoche4 = 330;
-    static int posicionCoche5 = 220;
-    static int posicionCoche6 = 110;
-    static int posicionCoche7 = 0;
-    
-    //Fila 2 (Arriba)
-    static int posicionCoche8 = 710;
-    static int posicionCoche9 = 600;
-    static int posicionCoche10 = 490;
-    static int posicionCoche11 = 380;
-    static int posicionCoche12 = 270;
-    static int posicionCoche13 = 160;
-    static int posicionCoche14 = 50;
-    static int posicionCoche15 = -60;
-    
-    
+
+    int ArrayCoches[] = new int[16];
+        
     public Coches(){
         
         //Velocidad coches
-//        int velCocheDer = 2;
-        
-        //Fila 1 (abajo)
-        final double POSICION_FILA_1_COCHES = 456.5;
-
-        //Fila 2 (Arriba)
-        final double POSICION_FILA_2_COCHES = 383.5;
+        //int velCocheDer = 2;
         
         //4 imagenes de los coches 
         Image cocheRojoDer = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
@@ -44,63 +19,57 @@ public class Coches extends Group{
         Image cocheAmarilloDer = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_der.png"));
         Image cocheAmarilloIzq = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_izq.png"));
         
-        //Array de los coches
+        //Array de las imágenes de los coches
         ImageView cocheView[] = new ImageView[16];
+                
+        //Fila 1 (abajo)
+        final double POSICION_FILA_1_COCHES = 456.5; // Y
+        ArrayCoches[0] = 770; // X
         
-        //Primera fila        
-        cocheView[0] = new ImageView(cocheRojoDer);
-        cocheView[0].setX(posicionCoche0);
+        //Bucle para almacenar la X de los diferentes coches
+        for (int i = 1; i < 8; i++){
+            ArrayCoches[i] = ArrayCoches[i-1]-110; // X
+        }
         
-        cocheView[1] = new ImageView(cocheAmarilloDer);
-        cocheView[1].setX(posicionCoche1);
+        //Bucles para las distintas imágenes de los coches
+        for (int i = 0; i <7; i+=2){
+            cocheView[i] = new ImageView(cocheRojoDer);
+        }
+        for (int i = 1; i <8; i+=2){
+            cocheView[i] = new ImageView(cocheAmarilloDer);
+        }
         
-        cocheView[2] = new ImageView(cocheRojoDer);
-        cocheView[2].setX(posicionCoche2);
-        
-        cocheView[3] = new ImageView(cocheRojoDer);
-        cocheView[3].setX(posicionCoche3);
-        
-        cocheView[4] = new ImageView(cocheAmarilloDer);
-        cocheView[4].setX(posicionCoche4);
-        
-        cocheView[5] = new ImageView(cocheAmarilloDer);
-        cocheView[5].setX(posicionCoche5);
-        
-        cocheView[6] = new ImageView(cocheRojoDer);
-        cocheView[6].setX(posicionCoche6);
-        
-        cocheView[7] = new ImageView(cocheRojoDer);
-        cocheView[7].setX(posicionCoche7);
+        //Bucle para posicionar las imágenes
+        for (int i = 0; i <8; i++){
+            cocheView[i].setX(ArrayCoches[i]);
+        }
         
         //Bucle para los primeros 7 coches para que tengan la misma "Y"
         for(int i=0; i<8; i++) {
             cocheView[i].setY(POSICION_FILA_1_COCHES);
         }
         
-        //Segunda fila        
-        cocheView[8] = new ImageView(cocheRojoIzq);
-        cocheView[8].setX(posicionCoche8);
+        //Fila 2 (Arriba)
+        final double POSICION_FILA_2_COCHES = 383.5; // Y
+        ArrayCoches[8] = 710; // X
         
-        cocheView[9] = new ImageView(cocheAmarilloIzq);
-        cocheView[9].setX(posicionCoche9);
+        //Bucle para almacenar la X de los diferentes coches
+        for (int i = 9; i < 16; i++){
+            ArrayCoches[i] = ArrayCoches[i-1]-110; // X
+        }
         
-        cocheView[10] = new ImageView(cocheAmarilloIzq);
-        cocheView[10].setX(posicionCoche10);
+        //Bucles para las distintas imágenes de los coches
+        for (int i = 8; i <15; i+=2){
+            cocheView[i] = new ImageView(cocheRojoIzq);
+        }
+        for (int i = 9; i <16; i+=2){
+            cocheView[i] = new ImageView(cocheAmarilloIzq);
+        } 
         
-        cocheView[11] = new ImageView(cocheAmarilloIzq);
-        cocheView[11].setX(posicionCoche11);
-        
-        cocheView[12] = new ImageView(cocheRojoIzq);
-        cocheView[12].setX(posicionCoche12);
-        
-        cocheView[13] = new ImageView(cocheAmarilloIzq);
-        cocheView[13].setX(posicionCoche13);
-        
-        cocheView[14] = new ImageView(cocheRojoIzq);
-        cocheView[14].setX(posicionCoche14);
-        
-        cocheView[15] = new ImageView(cocheAmarilloIzq);
-        cocheView[15].setX(posicionCoche15);
+        //Bucle para posicionar las imágenes        
+        for (int i = 8; i <16; i++){
+            cocheView[i].setX(ArrayCoches[i]);
+        }
         
         //Bucle para los ultimos 8 coches para que tengan la misma "Y"
         for(int i=8; i<16; i++) {

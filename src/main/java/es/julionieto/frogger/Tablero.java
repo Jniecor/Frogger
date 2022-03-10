@@ -1,8 +1,7 @@
 package es.julionieto.frogger;
 
-public class Movimiento {
+public class Tablero {
     
-    
-    
+
     
 }
