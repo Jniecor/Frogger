@@ -1,7 +1,9 @@
 package es.julionieto.frogger;
 
-public class Tablero {
+public class Tablero{
     
-
+    public Tablero(){
+        
+    }
     
 }

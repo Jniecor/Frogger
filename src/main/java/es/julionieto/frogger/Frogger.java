@@ -5,49 +5,49 @@ import java.util.Random;
 public class Frogger{
     
     //Array multidimensional para el tablero
-    char[][] tablero;
+    static char[][] tablero;
     
     //Dimensiones del tablero
-    short tamXTablero;
-    short tamYTablero;
+    static short tamXTablero;
+    static short tamYTablero;
     
     //Jugador + Obstaculos
-    final char JUGADOR = 'a';
-    final char COCHES = 'b';
-    final char TRONCOS = 'c';
-    final char NENUFARES = 'd';
-    final char METAS = 'e';
+    static final char JUGADOR = 'a';
+    static final char COCHES = 'b';
+    static final char TRONCOS = 'c';
+    static final char NENUFARES = 'd';
+    static final char METAS = 'e';
     
     //Zonas
-    final char SUELO = '.';
-    final char AGUA = ',';
-    final char PARED = '-';  
+    static final char SUELO = '.';
+    static final char AGUA = ',';
+    static final char PARED = '-';  
     
     //Dimension del suelo y del agua en cuanto a 'Y' se refiere
-    final short DIM_SUELO = 13;
-    final short DIM_AGUA = 6;
+    static final short DIM_SUELO = 13;
+    static final short DIM_AGUA = 6;
     
     //Posición del jugador
-    final short POS_INIY_JUGADOR = 13; 
-    final short POS_INIY2_JUGADOR = 6;
+    static final short POS_INIY_JUGADOR = 13; 
+    static final short POS_INIY2_JUGADOR = 6;
     Random random = new Random();
-    int posX = random.nextInt(19);
-    short posY = 13;
+    static int posX = 9;
+    static short posY = 13;
     
     //Filas de los diferentes obstaculos
-    final short FILA_COCHES_1 = 10;
-    final short FILA_COCHES_2 = 8;
-    final short FILA_NENUFARES_1 = 5;
-    final short FILA_NENUFARES_2 = 3;
-    final short FILA_NENUFARES_3 = 1;
-    final short FILA_TRONCOS_1 = 4;
-    final short FILA_TRONCOS_2 = 2;
+    static final short FILA_COCHES_1 = 10;
+    static final short FILA_COCHES_2 = 8;
+    static final short FILA_NENUFARES_1 = 5;
+    static final short FILA_NENUFARES_2 = 3;
+    static final short FILA_NENUFARES_3 = 1;
+    static final short FILA_TRONCOS_1 = 4;
+    static final short FILA_TRONCOS_2 = 2;
 
     //Contadores
-    short contadorMuertes = 0;
-    short contadorDesplazamiento = 0;
-    short contadorEstancado = 0;
-    short contadorMeta = 0;
+    static short contadorMuertes = 0;
+    static short contadorDesplazamiento = 0;
+    static short contadorEstancado = 0;
+    static short contadorMeta = 0;
     
     public Frogger(){
         
