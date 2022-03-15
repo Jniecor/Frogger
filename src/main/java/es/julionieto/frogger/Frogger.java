@@ -48,6 +48,7 @@ public class Frogger{
     static short contadorDesplazamiento = 0;
     static short contadorEstancado = 0;
     static short contadorMeta = 0;
+    static short jugando = 1;
     
     public Frogger(){
         

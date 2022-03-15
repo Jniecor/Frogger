@@ -13,7 +13,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        
+
         //Dimensiones de la pantalla
         short tamXPantalla = 800;
         short tamYPantalla = 600;
@@ -30,21 +30,24 @@ public class App extends Application {
         rootPane.getChildren().add(imgView);
         
         // Panel contenedor para los elementos animados del juego
-        Pane paneScrollJuego = new Pane();
-        rootPane.getChildren().add(paneScrollJuego);
+//        Pane paneScrollJuego = new Pane();
+//        rootPane.getChildren().add(paneScrollJuego);
         
-        //Se añaden las diferentes clases a la escena/consola
+        //Se añaden las diferentes clases/métodos a la escena/consola
         Frogger frogger = new Frogger();
         Rana rana = new Rana();
         Coches coches = new Coches();
         Troncos troncos = new Troncos();
         Nenufares nenufares = new Nenufares();
-        paneScrollJuego.getChildren().add(rana);
-        paneScrollJuego.getChildren().add(coches);
-        paneScrollJuego.getChildren().add(troncos);
-        paneScrollJuego.getChildren().add(nenufares);      
+        Movimiento movimiento = new Movimiento(frogger,rana,coches,troncos,nenufares);
+        rootPane.getChildren().add(rana);
+        rootPane.getChildren().add(coches);
+        rootPane.getChildren().add(troncos);
+        rootPane.getChildren().add(nenufares);
+        rootPane.getChildren().add(movimiento);
         frogger.colocacionJugador();        
         frogger.colocacionObstaculos();
+//        rootPane.getChildren().add(movimiento);
 //        frogger.comprobarColisionCoches();
 //        frogger.comprobarColisionAgua();
 //        frogger.comprobarColisionNenufares();
@@ -53,7 +56,7 @@ public class App extends Application {
 //        frogger.comprobarColisionParedFinal();
 //        frogger.comprobarColisionNenufares();
 //        frogger.comprobarColisionMetas();
-        frogger.mostrarTableroConsola();
+        
 
     }
 

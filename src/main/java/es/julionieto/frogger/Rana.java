@@ -10,10 +10,10 @@ public class Rana extends Group{
     static final int POS_INIY_RANA = 570;
     static int posYPer = POS_INIY_RANA;
     static int posXPer = 400;
-        
+    static Group groupPersonaje;
+    
     public Rana(){
         
-        Group groupPersonaje;
         Random random = new Random();
         
         /* --- DIBUJO DEL PERSONAJE --- */
