@@ -10,18 +10,15 @@ public class Rana extends Group{
     static final int POS_INIY_RANA = 570;
     static int posYPer = POS_INIY_RANA;
     static int posXPer = 400;
-    static Group groupPersonaje;
+    // Rectángulo para la colision del jugador
+    static Rectangle rectJugador = new Rectangle(22, 25, Color.BLUE);
     
     public Rana(){
         
         Random random = new Random();
         
-        /* --- DIBUJO DEL PERSONAJE --- */
-        groupPersonaje = new Group();
-        
-        // Rectángulo para la colision del jugador
-        
-        Rectangle rectJugador = new Rectangle(22, 25, Color.BLUE);
+        /* --- DIBUJO DEL PERSONAJE --- */        
+        //Se añade la colision y se pone en invisible
         this.getChildren().add(rectJugador);
         rectJugador.setVisible(false);
 
@@ -115,10 +112,6 @@ public class Rana extends Group{
         pieTraDer.setHeight(2);
         this.getChildren().add(pieTraDer);
         
-        // Colocar personaje en su posición de inicio
-        this.setLayoutX(posXPer);
-        this.setLayoutY(posYPer);
-        
         //Ranas de la meta
         
         //Meter colisiones y una foto de una rana en invisible para que cuando
@@ -127,4 +120,47 @@ public class Rana extends Group{
         
     }
     
+    public void setPosX() {
+        this.posXPer = posXPer;
+        this.setLayoutX(this.posXPer);
+        if (posXPer >= 770){
+            this.setLayoutX(770);
+            rectJugador.setX(770);
+        }
+        if (posXPer <= 10){
+            this.setLayoutX(10);
+            rectJugador.setX(10);
+        }
+    }
+    
+    public void setPosY() {
+        this.posYPer = posYPer;
+        this.setLayoutY(this.posYPer);
+        if (posYPer >= 570){
+            this.setLayoutY(570);
+            rectJugador.setY(570);
+        }
+        if (posYPer <= 100){
+            this.setLayoutY(100);
+            rectJugador.setY(100);
+        }
+    }
+    
 }
+
+//                if (posYPersonaje >= 570){
+//                    groupPersonaje.setLayoutY(570);
+//                    colisionJugador.setY(570);
+//                }
+//                if (posYPersonaje <= 100){
+//                    groupPersonaje.setLayoutY(100);
+//                    colisionJugador.setY(100);
+//                }
+//                if (posXPersonaje >= 770){
+//                    groupPersonaje.setLayoutX(770);
+//                    colisionJugador.setX(770);
+//                }
+//                if (posXPersonaje <= 10){
+//                    groupPersonaje.setLayoutX(10);
+//                    colisionJugador.setX(10);
+//                }

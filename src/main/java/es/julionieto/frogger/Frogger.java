@@ -83,13 +83,6 @@ public class Frogger{
         //Se coloca al jugador
         tablero[posX][posY] = JUGADOR;
         
-//        //Dice la posicion del jugador
-//        if (posX>=0 && posX<=tamXTablero){
-//            if (posY>=0 && posY<=tamXTablero){
-//                System.out.println(posX);
-//                System.out.println(posY);
-//            }
-//        }
     }
     
     public void colocacionObstaculos(){

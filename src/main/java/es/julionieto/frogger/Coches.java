@@ -12,12 +12,11 @@ public class Coches extends Group{
     static Rectangle rectCoche[] = new Rectangle[16];
     //Array de las imágenes de los coches
     static ImageView cocheView[] = new ImageView[16];
+    //Velocidad coches
+    static int velCoche = 3;
         
     public Coches(){
-        
-        //Velocidad coches
-        //int velCocheDer = 2;
-        
+
         //4 imagenes de los coches 
         Image cocheRojoDer = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
         Image cocheRojoIzq = new Image(getClass().getResourceAsStream("/images/Coche_rojo_izq.png"));

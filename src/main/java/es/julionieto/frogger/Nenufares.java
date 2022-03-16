@@ -14,6 +14,9 @@ public class Nenufares extends Group{
     //Array de las imagenes de los nenúfares
     static ImageView nenufarView[] = new ImageView[30];
     
+    //Velocidad nenufares
+    static int velNenufar = 2;
+    
     public Nenufares(){
         
         //Única imagen del nenufar

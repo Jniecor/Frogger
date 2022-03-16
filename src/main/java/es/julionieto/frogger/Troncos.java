@@ -23,6 +23,9 @@ public class Troncos extends Group{
     //Array de las imágenes de los troncos
     static ImageView troncoView[] = new ImageView[10];
     
+    //Velocidad troncos
+    static int velTronco = 1;
+    
     public Troncos(){
 
         //Fila 1 (abajo)

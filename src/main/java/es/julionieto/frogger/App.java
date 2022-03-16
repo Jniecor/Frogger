@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -11,6 +12,13 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+    Frogger frogger = new Frogger();
+    Rana rana = new Rana();
+    Coches coches = new Coches();
+    Troncos troncos = new Troncos();
+    Nenufares nenufares = new Nenufares();
+    Movimiento movimiento = new Movimiento(frogger,rana,coches,troncos,nenufares);
+        
     @Override
     public void start(Stage stage) {
 
@@ -29,37 +37,49 @@ public class App extends Application {
         ImageView imgView = new ImageView(img);
         rootPane.getChildren().add(imgView);
         
-        // Panel contenedor para los elementos animados del juego
-//        Pane paneScrollJuego = new Pane();
-//        rootPane.getChildren().add(paneScrollJuego);
-        
-        //Se añaden las diferentes clases/métodos a la escena/consola
-        Frogger frogger = new Frogger();
-        Rana rana = new Rana();
-        Coches coches = new Coches();
-        Troncos troncos = new Troncos();
-        Nenufares nenufares = new Nenufares();
-        Movimiento movimiento = new Movimiento(frogger,rana,coches,troncos,nenufares);
+        //Se añaden las diferentes clases/métodos a la escena/consola        
         rootPane.getChildren().add(rana);
         rootPane.getChildren().add(coches);
         rootPane.getChildren().add(troncos);
         rootPane.getChildren().add(nenufares);
         rootPane.getChildren().add(movimiento);
-        frogger.colocacionJugador();        
-        frogger.colocacionObstaculos();
-//        rootPane.getChildren().add(movimiento);
-//        frogger.comprobarColisionCoches();
-//        frogger.comprobarColisionAgua();
-//        frogger.comprobarColisionNenufares();
-//        frogger.comprobarColisionTroncos();
-//        frogger.comprobarColisionNenufares();
-//        frogger.comprobarColisionParedFinal();
-//        frogger.comprobarColisionNenufares();
-//        frogger.comprobarColisionMetas();
-        
+
+        scene.setOnKeyPressed((KeyEvent event) -> {
+            switch(event.getCode()) {
+                case UP:
+                    rana.posYPer -= 36;
+                    frogger.posY -= 1;
+                    break;
+                case DOWN:
+                    rana.posYPer += 36;
+                    frogger.posY += 1;
+                    break;
+                case LEFT:
+                    rana.posXPer -= 10;
+                    frogger.posX -= 1;
+                    break;
+                case RIGHT:
+                    rana.posXPer += 10;
+                    frogger.posX += 1;
+                    break;
+            }
+        });
+
+        scene.setOnKeyReleased((KeyEvent event) -> {
+            rana.posYPer = rana.posYPer;
+            rana.posXPer = rana.posXPer;
+        });        
 
     }
-
+    
+//    public void movimientoJugador(){
+//    
+//        System.out.println(Rana.posXPer);
+////        Movimiento de la rana
+//        
+//        
+//    }
+    
     public static void main(String[] args) {
         launch();
     }
