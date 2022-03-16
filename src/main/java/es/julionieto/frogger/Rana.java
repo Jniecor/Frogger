@@ -147,20 +147,3 @@ public class Rana extends Group{
     }
     
 }
-
-//                if (posYPersonaje >= 570){
-//                    groupPersonaje.setLayoutY(570);
-//                    colisionJugador.setY(570);
-//                }
-//                if (posYPersonaje <= 100){
-//                    groupPersonaje.setLayoutY(100);
-//                    colisionJugador.setY(100);
-//                }
-//                if (posXPersonaje >= 770){
-//                    groupPersonaje.setLayoutX(770);
-//                    colisionJugador.setX(770);
-//                }
-//                if (posXPersonaje <= 10){
-//                    groupPersonaje.setLayoutX(10);
-//                    colisionJugador.setX(10);
-//                }
