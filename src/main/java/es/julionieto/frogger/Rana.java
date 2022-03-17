@@ -7,6 +7,8 @@ import javafx.scene.shape.Rectangle;
 
 public class Rana extends Group{
     
+    
+    static final int POS_INIX_RANA = 400;
     static final int POS_INIY_RANA = 570;
     static int posYPer = POS_INIY_RANA;
     static int posXPer = 400;
@@ -19,6 +21,8 @@ public class Rana extends Group{
         
         /* --- DIBUJO DEL PERSONAJE --- */        
         //Se añade la colision y se pone en invisible
+        rectJugador.setX(posYPer);
+        rectJugador.setY(posXPer);
         this.getChildren().add(rectJugador);
         rectJugador.setVisible(false);
 
@@ -122,12 +126,15 @@ public class Rana extends Group{
     
     public void setPosX() {
         this.posXPer = posXPer;
+        rectJugador.setX(posXPer);
         this.setLayoutX(this.posXPer);
-        if (posXPer >= 770){
+        if (posXPer > 770){
+            this.posXPer = 770;
             this.setLayoutX(770);
             rectJugador.setX(770);
         }
-        if (posXPer <= 10){
+        if (posXPer < 10){
+            this.posXPer = 10;
             this.setLayoutX(10);
             rectJugador.setX(10);
         }
@@ -135,12 +142,15 @@ public class Rana extends Group{
     
     public void setPosY() {
         this.posYPer = posYPer;
+        rectJugador.setY(posYPer);
         this.setLayoutY(this.posYPer);
-        if (posYPer >= 570){
+        if (posYPer > 570){
+            this.posYPer = 570;
             this.setLayoutY(570);
             rectJugador.setY(570);
         }
-        if (posYPer <= 100){
+        if (posYPer < 100){
+            this.posYPer = 100;
             this.setLayoutY(100);
             rectJugador.setY(100);
         }

@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Troncos extends Group{
     
@@ -44,15 +45,15 @@ public class Troncos extends Group{
         //Bucle para posicionar las imágenes
         for (int i = 0; i <5; i++){
             troncoView[i].setX(arrayTroncos[i]);
-            rectTronco[i] = new Rectangle(92, 35, Color.RED);
-            rectTronco[i].setX(arrayTroncos[i]);
+            rectTronco[i] = new Rectangle(88, 31, Color.RED);
+            rectTronco[i].setX(arrayTroncos[i]-1);
         }
         
         //Bucle para los primeros 5 troncos para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=0; i<5; i++) {
             troncoView[i].setY(POSICION_FILA_1_TRONCOS);
-            rectTronco[i].setY(POSICION_FILA_1_TRONCOS);
+            rectTronco[i].setY(POSICION_FILA_1_TRONCOS-1);
         }
         
         //Fila 2 (Arriba)
@@ -67,14 +68,14 @@ public class Troncos extends Group{
         for (int i = 5; i <10; i++){
             troncoView[i].setX(arrayTroncos[i]);
             rectTronco[i] = new Rectangle(92, 35, Color.RED);
-            rectTronco[i].setX(arrayTroncos[i]);
+            rectTronco[i].setX(arrayTroncos[i]-1);
         }
         
         //Bucle para los ultimos 5 troncos para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=5; i<10; i++) {
             troncoView[i].setY(POSICION_FILA_2_TRONCOS);
-            rectTronco[i].setY(POSICION_FILA_2_TRONCOS);
+            rectTronco[i].setY(POSICION_FILA_2_TRONCOS-1);
         }
         
         for(int i=0; i<10; i++){
@@ -83,6 +84,21 @@ public class Troncos extends Group{
             rectTronco[i].setVisible(false);
         }
     
+    }
+    
+    public void colisionTroncos(Frogger frogger, Rana rana){
+        
+        for (int i=0; i<10; i++){
+                Shape zonaColision = Shape.intersect(rectTronco[i], rana.rectJugador);
+                boolean colisionVaciaCoches = zonaColision.getBoundsInLocal().isEmpty();
+                if (colisionVaciaCoches == false){
+                    rana.posXPer += velTronco;
+                    rana.setLayoutX(rana.posXPer);
+                } 
+            }
+    
+//        frogger.comprobarColisionTroncos();
+        
     }
     
 }

@@ -3,40 +3,32 @@ package es.julionieto.frogger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class Movimiento extends Pane{
-    
-    Frogger frogger;
+
     Rana rana;
     Coches coches;
     Troncos troncos;
     Nenufares nenufares;
+    Frogger frogger;
     
-    public Movimiento(Frogger frogger, Rana rana, Coches coches, Troncos troncos, Nenufares nenufares){
+    public Movimiento(Rana rana, Coches coches, Troncos troncos, Nenufares nenufares, Frogger frogger){
         
         Timeline animationGame = new Timeline(
             new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
-
-                frogger.colocacionObstaculos();
+                
                 frogger.colocacionJugador();
-//                movimientoJugador();
-//                rana.posXPer -= 2;
-//                System.out.println(Rana.posXPer);
+                frogger.colocacionObstaculos();
                 movimientoCoches();
                 movimientoNenufares();
                 movimientoTroncos();
                 rana.setPosX();
                 rana.setPosY();                
-                
-//                frogger.comprobarColisionCoches();
-//                frogger.comprobarColisionAgua();
-//                frogger.comprobarColisionNenufares();
-//                frogger.comprobarColisionTroncos();
-//                frogger.comprobarColisionParedFinal();
-//                frogger.comprobarColisionMetas();
+                coches.colisionCoches(frogger, rana);
+                nenufares.colisionNenufares(frogger, rana);
+                troncos.colisionTroncos(frogger, rana);
                 frogger.mostrarTableroConsola();
 
             })

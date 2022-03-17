@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Nenufares extends Group{
     
@@ -73,7 +74,7 @@ public class Nenufares extends Group{
         //Bucle para posicionar las imágenes
         for (int i = 0; i <30; i++){
             nenufarView[i].setX(arrayNenufares[i]);
-            rectNenufar[i] = new Rectangle(32, 32, Color.GREEN);
+            rectNenufar[i] = new Rectangle(28, 28, Color.GREEN);
             rectNenufar[i].setX(arrayNenufares[i]);
         }
         
@@ -101,5 +102,21 @@ public class Nenufares extends Group{
             rectNenufar[i].setVisible(false);
         }
     }
+    
+    public void colisionNenufares(Frogger frogger, Rana rana){
+        
+        for (int i=0; i<30; i++){
+                Shape zonaColision = Shape.intersect(rectNenufar[i], rana.rectJugador);
+                boolean colisionVaciaCoches = zonaColision.getBoundsInLocal().isEmpty();
+                if (colisionVaciaCoches == false){
+                    rana.posXPer += velNenufar;
+                    rana.setLayoutX(rana.posXPer);
+                } 
+            }
+    
+//        frogger.comprobarColisionNenufares();
+        
+    }
+    
     
 }

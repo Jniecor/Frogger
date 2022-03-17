@@ -187,6 +187,7 @@ public class Frogger{
         while (tamXTablero-posX >= 0 && tablero[posX][posY] == COCHES){
             
             contadorMuertes++;
+            
             for(short x=0; x<tamXTablero; x++){
                 tablero[x][POS_INIY_JUGADOR] = SUELO;
             }

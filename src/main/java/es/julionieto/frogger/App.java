@@ -12,12 +12,12 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    Frogger frogger = new Frogger();
     Rana rana = new Rana();
     Coches coches = new Coches();
     Troncos troncos = new Troncos();
     Nenufares nenufares = new Nenufares();
-    Movimiento movimiento = new Movimiento(frogger,rana,coches,troncos,nenufares);
+    Frogger frogger = new Frogger();
+    Movimiento movimiento = new Movimiento(rana,coches,troncos,nenufares, frogger);
         
     @Override
     public void start(Stage stage) {
@@ -37,29 +37,32 @@ public class App extends Application {
         ImageView imgView = new ImageView(img);
         rootPane.getChildren().add(imgView);
         
-        //Se añaden las diferentes clases/métodos a la escena/consola        
-        rootPane.getChildren().add(rana);
+        //Se añaden las diferentes clases/métodos a la escena/consola
+        rootPane.getChildren().add(rana);        
+        rootPane.getChildren().add(rana.rectJugador);
         rootPane.getChildren().add(coches);
         rootPane.getChildren().add(troncos);
         rootPane.getChildren().add(nenufares);
         rootPane.getChildren().add(movimiento);
-
+        
+        
+        //Movimiento de la rana mediante las teclas
         scene.setOnKeyPressed((KeyEvent event) -> {
             switch(event.getCode()) {
                 case UP:
-                    rana.posYPer -= 36;
+                    rana.posYPer -= 37;
                     frogger.posY -= 1;
                     break;
                 case DOWN:
-                    rana.posYPer += 36;
+                    rana.posYPer += 37;
                     frogger.posY += 1;
                     break;
                 case LEFT:
-                    rana.posXPer -= 10;
+                    rana.posXPer -= 42;
                     frogger.posX -= 1;
                     break;
                 case RIGHT:
-                    rana.posXPer += 10;
+                    rana.posXPer += 42;
                     frogger.posX += 1;
                     break;
             }
@@ -71,14 +74,6 @@ public class App extends Application {
         });        
 
     }
-    
-//    public void movimientoJugador(){
-//    
-//        System.out.println(Rana.posXPer);
-////        Movimiento de la rana
-//        
-//        
-//    }
     
     public static void main(String[] args) {
         launch();

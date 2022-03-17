@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Coches extends Group{
 
@@ -93,6 +94,22 @@ public class Coches extends Group{
             rectCoche[i].setVisible(false);
         }
         
+    }
+    
+    public void colisionCoches(Frogger frogger, Rana rana){
+        
+        for (int i=0; i<16; i++){
+            Shape zonaColision = Shape.intersect(rectCoche[i], rana.rectJugador);
+            boolean colisionVaciaCoches = zonaColision.getBoundsInLocal().isEmpty();
+            if (colisionVaciaCoches == false){
+                rana.posXPer = rana.POS_INIX_RANA;
+                rana.posYPer = rana.POS_INIY_RANA;
+                rana.setLayoutX(rana.posXPer);
+                rana.setLayoutY(rana.posXPer);
+            } 
+        }
+//        frogger.comprobarColisionCoches();
+    
     }
     
 }
