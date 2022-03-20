@@ -81,7 +81,22 @@ public class Frogger{
     public void colocacionJugador(){
         
         //Se coloca al jugador
-        tablero[posX][posY] = JUGADOR;
+        if (posX <= 0){
+            posX = 0;
+            tablero[posX][posY] = JUGADOR;
+        }
+        if (posX >= 19){
+            posX = 0;
+            tablero[posX][posY] = JUGADOR;
+        }
+        if (posY <= 0){
+            posY = 0;
+            tablero[posX][posY] = JUGADOR;
+        }
+        if (posY <= 13){
+            posY = 0;
+            tablero[posX][posY] = JUGADOR;
+        }
         
     }
     

@@ -14,7 +14,7 @@ public class Movimiento extends Pane{
     Nenufares nenufares;
     Frogger frogger;
     
-    public Movimiento(Rana rana, Coches coches, Troncos troncos, Nenufares nenufares, Frogger frogger){
+    public Movimiento(Rana rana, Coches coches, Troncos troncos, Nenufares nenufares, Frogger frogger, Metas metas){
         
         Timeline animationGame = new Timeline(
             new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
@@ -29,6 +29,7 @@ public class Movimiento extends Pane{
                 coches.colisionCoches(frogger, rana);
                 nenufares.colisionNenufares(frogger, rana);
                 troncos.colisionTroncos(frogger, rana);
+                metas.colisionMetas(frogger, rana);
                 frogger.mostrarTableroConsola();
 
             })

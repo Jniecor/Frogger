@@ -17,7 +17,8 @@ public class App extends Application {
     Troncos troncos = new Troncos();
     Nenufares nenufares = new Nenufares();
     Frogger frogger = new Frogger();
-    Movimiento movimiento = new Movimiento(rana,coches,troncos,nenufares, frogger);
+    Metas metas = new Metas();
+    Movimiento movimiento = new Movimiento(rana,coches,troncos,nenufares, frogger, metas);
         
     @Override
     public void start(Stage stage) {
@@ -33,7 +34,7 @@ public class App extends Application {
         stage.show();
         
         //Imagen de fondo
-        Image img = new Image(getClass().getResourceAsStream("/images/Background.png"));
+        Image img = new Image(getClass().getResourceAsStream("/images/Background.2.png"));
         ImageView imgView = new ImageView(img);
         rootPane.getChildren().add(imgView);
         
@@ -43,6 +44,7 @@ public class App extends Application {
         rootPane.getChildren().add(coches);
         rootPane.getChildren().add(troncos);
         rootPane.getChildren().add(nenufares);
+        rootPane.getChildren().add(metas);
         rootPane.getChildren().add(movimiento);
         
         
