@@ -13,6 +13,7 @@ public class Movimiento extends Pane{
     Troncos troncos;
     Nenufares nenufares;
     Frogger frogger;
+//    Agua agua; Agua agua
     
     public Movimiento(Rana rana, Coches coches, Troncos troncos, Nenufares nenufares, Frogger frogger, Metas metas){
         
@@ -23,6 +24,7 @@ public class Movimiento extends Pane{
                 frogger.colocacionObstaculos();
                 movimientoCoches();
                 movimientoNenufares();
+//                movimientoAgua();
                 movimientoTroncos();
                 rana.setPosX();
                 rana.setPosY();                
@@ -81,6 +83,19 @@ public class Movimiento extends Pane{
     
     }
     
+//    public void movimientoAgua(){
+//    
+//    //Movimiento Agua
+//        for(int i=0; i<12; i++){
+//            agua.arrayAgua[i] += nenufares.velNenufar;
+//            agua.rectAgua[i].setX(agua.arrayAgua[i]);
+//            if (agua.arrayAgua[i] >= 895){
+//                agua.arrayAgua[i] = -100;
+//                nenufares.rectNenufar[i].setX(agua.arrayAgua[i]);
+//            }
+//        }
+//    
+//    }
     public void movimientoTroncos(){
     
         //Movimiento Troncos

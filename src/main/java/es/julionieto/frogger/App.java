@@ -18,6 +18,7 @@ public class App extends Application {
     Nenufares nenufares = new Nenufares();
     Frogger frogger = new Frogger();
     Metas metas = new Metas();
+//    Agua agua = new Agua(nenufares, troncos); /*agua*/
     Movimiento movimiento = new Movimiento(rana,coches,troncos,nenufares, frogger, metas);
         
     @Override
@@ -45,27 +46,27 @@ public class App extends Application {
         rootPane.getChildren().add(troncos);
         rootPane.getChildren().add(nenufares);
         rootPane.getChildren().add(metas);
+//        rootPane.getChildren().add(agua);
         rootPane.getChildren().add(movimiento);
-        
         
         //Movimiento de la rana mediante las teclas
         scene.setOnKeyPressed((KeyEvent event) -> {
             switch(event.getCode()) {
                 case UP:
                     rana.posYPer -= 37;
-                    frogger.posY -= 1;
+//                    frogger.posY -= 1;
                     break;
                 case DOWN:
                     rana.posYPer += 37;
-                    frogger.posY += 1;
+//                    frogger.posY += 1;
                     break;
                 case LEFT:
                     rana.posXPer -= 42;
-                    frogger.posX -= 1;
+//                    frogger.posX -= 1;
                     break;
                 case RIGHT:
                     rana.posXPer += 42;
-                    frogger.posX += 1;
+//                    frogger.posX += 1;
                     break;
             }
         });

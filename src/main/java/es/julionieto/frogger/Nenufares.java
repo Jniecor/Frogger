@@ -18,12 +18,15 @@ public class Nenufares extends Group{
     //Velocidad nenufares
     static int velNenufar = 2;
     
+    static final double POSICION_FILA_1_NENUFARES = 273.5;
+    static final double POSICION_FILA_2_NENUFARES = 201.5;
+    static final double POSICION_FILA_3_NENUFARES = 129.5;
+    
     public Nenufares(){
         
         //Única imagen del nenufar
         Image nenufar = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
         //Fila 1 (Abajo)
-        final double POSICION_FILA_1_NENUFARES = 273.5;
         arrayNenufares[0] = -5;
         arrayNenufares[1] = -35;
         arrayNenufares[2] = 165;
@@ -41,8 +44,6 @@ public class Nenufares extends Group{
         }   
         
         //Fila 2 (Medio)   
-        final double POSICION_FILA_2_NENUFARES = 201.5;
-        
         arrayNenufares[10] = -5;
         arrayNenufares[11] = -35;
         arrayNenufares[12] = 165;
@@ -55,9 +56,7 @@ public class Nenufares extends Group{
             arrayNenufares[i] = arrayNenufares[i-2]+200;
         }
         
-        //Fila 3 (Arriba)
-        final double POSICION_FILA_3_NENUFARES = 129.5;
-        
+        //Fila 3 (Arriba)        
         arrayNenufares[20] = -5;
         arrayNenufares[21] = -35;
         arrayNenufares[22] = 165;

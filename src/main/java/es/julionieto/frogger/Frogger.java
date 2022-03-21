@@ -97,6 +97,7 @@ public class Frogger{
             posY = 13;
             tablero[posX][posY] = JUGADOR;
         }
+        tablero[posX][posY] = JUGADOR;
         
     }
     
