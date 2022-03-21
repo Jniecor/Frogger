@@ -12,8 +12,8 @@ public class Rana extends Group{
     static final int POS_INIY_RANA = 570;
     static int posYPer = POS_INIY_RANA;
     static int posXPer = POS_INIX_RANA;
-    static int POS_MEDX_RANA = 659;
-    static int POS_MEDY_RANA = 570;
+    static int POS_MEDX_RANA = 400;
+    static int POS_MEDY_RANA = 311;
     // Rectángulo para la colision del jugador
     static Rectangle rectJugador = new Rectangle(22, 25, Color.BLUE);
     

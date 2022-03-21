@@ -47,8 +47,8 @@ public class Metas extends Group{
         
         for (int i=0; i<5; i++){
                 Shape zonaColision = Shape.intersect(rectMetas[i], rana.rectJugador);
-                boolean colisionVaciaCoches = zonaColision.getBoundsInLocal().isEmpty();
-                if (colisionVaciaCoches == false){
+                boolean colisionVaciaMetas = zonaColision.getBoundsInLocal().isEmpty();
+                if (colisionVaciaMetas == false){
                     rana.posXPer = rana.POS_INIX_RANA;
                     rana.posYPer = rana.POS_INIY_RANA;
                     rana.setLayoutX(rana.posXPer);
@@ -60,7 +60,7 @@ public class Metas extends Group{
                 if (contadorMetas >= 4){
 
                     metasView[i].setVisible(false);
-
+//                    contadorMetas = 0;
                 }
             }
     

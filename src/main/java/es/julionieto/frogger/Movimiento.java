@@ -14,8 +14,9 @@ public class Movimiento extends Pane{
     Nenufares nenufares;
     Frogger frogger;
 //    Agua agua; Agua agua
+    ParedFinal paredFinal;
     
-    public Movimiento(Rana rana, Coches coches, Troncos troncos, Nenufares nenufares, Frogger frogger, Metas metas){
+    public Movimiento(Rana rana, Coches coches, Troncos troncos, Nenufares nenufares, Frogger frogger, Metas metas, ParedFinal paredFinal){
         
         Timeline animationGame = new Timeline(
             new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
@@ -31,6 +32,8 @@ public class Movimiento extends Pane{
                 coches.colisionCoches(frogger, rana);
                 nenufares.colisionNenufares(frogger, rana);
                 troncos.colisionTroncos(frogger, rana);
+//                agua.colisionAgua(frogger, rana);
+                paredFinal.colisionPared(frogger, rana);
                 metas.colisionMetas(frogger, rana);
                 frogger.mostrarTableroConsola();
 
@@ -85,13 +88,13 @@ public class Movimiento extends Pane{
     
 //    public void movimientoAgua(){
 //    
-//    //Movimiento Agua
+//        //Movimiento Agua
 //        for(int i=0; i<12; i++){
 //            agua.arrayAgua[i] += nenufares.velNenufar;
 //            agua.rectAgua[i].setX(agua.arrayAgua[i]);
 //            if (agua.arrayAgua[i] >= 895){
 //                agua.arrayAgua[i] = -100;
-//                nenufares.rectNenufar[i].setX(agua.arrayAgua[i]);
+//                agua.rectAgua[i].setX(agua.arrayAgua[i]);
 //            }
 //        }
 //    

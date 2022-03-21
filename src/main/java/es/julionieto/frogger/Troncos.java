@@ -90,8 +90,8 @@ public class Troncos extends Group{
         
         for (int i=0; i<10; i++){
                 Shape zonaColision = Shape.intersect(rectTronco[i], rana.rectJugador);
-                boolean colisionVaciaCoches = zonaColision.getBoundsInLocal().isEmpty();
-                if (colisionVaciaCoches == false){
+                boolean colisionVaciaTroncos = zonaColision.getBoundsInLocal().isEmpty();
+                if (colisionVaciaTroncos == false){
                     rana.posXPer += velTronco;
                     rana.setLayoutX(rana.posXPer);
                 } 

@@ -106,8 +106,8 @@ public class Nenufares extends Group{
         
         for (int i=0; i<30; i++){
                 Shape zonaColision = Shape.intersect(rectNenufar[i], rana.rectJugador);
-                boolean colisionVaciaCoches = zonaColision.getBoundsInLocal().isEmpty();
-                if (colisionVaciaCoches == false){
+                boolean colisionVaciaNenufares = zonaColision.getBoundsInLocal().isEmpty();
+                if (colisionVaciaNenufares == false){
                     rana.posXPer += velNenufar;
                     rana.setLayoutX(rana.posXPer);
                 } 

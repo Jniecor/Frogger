@@ -18,8 +18,9 @@ public class App extends Application {
     Nenufares nenufares = new Nenufares();
     Frogger frogger = new Frogger();
     Metas metas = new Metas();
-//    Agua agua = new Agua(nenufares, troncos); /*agua*/
-    Movimiento movimiento = new Movimiento(rana,coches,troncos,nenufares, frogger, metas);
+//    Agua agua = new Agua(nenufares, troncos);
+    ParedFinal paredFinal = new ParedFinal();                         /*agua*/
+    Movimiento movimiento = new Movimiento(rana,coches,troncos,nenufares, frogger, metas, paredFinal);
         
     @Override
     public void start(Stage stage) {
@@ -47,6 +48,7 @@ public class App extends Application {
         rootPane.getChildren().add(nenufares);
         rootPane.getChildren().add(metas);
 //        rootPane.getChildren().add(agua);
+        rootPane.getChildren().add(paredFinal);
         rootPane.getChildren().add(movimiento);
         
         //Movimiento de la rana mediante las teclas
