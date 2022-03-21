@@ -55,10 +55,10 @@ public class Metas extends Group{
                     rana.setLayoutY(rana.posYPer);
                     metasView[i].setVisible(true);
                     contadorMetas++;
-                    if (contadorMetas == 4){
-                    
+                    if (contadorMetas >= 4){
+                        
                         metasView[i].setVisible(false);
-                    
+                        
                     }
                 } 
             }

@@ -86,15 +86,15 @@ public class Frogger{
             tablero[posX][posY] = JUGADOR;
         }
         if (posX >= 19){
-            posX = 0;
+            posX = 19;
             tablero[posX][posY] = JUGADOR;
         }
         if (posY <= 0){
             posY = 0;
             tablero[posX][posY] = JUGADOR;
         }
-        if (posY <= 13){
-            posY = 0;
+        if (posY >= 13){
+            posY = 13;
             tablero[posX][posY] = JUGADOR;
         }
         
